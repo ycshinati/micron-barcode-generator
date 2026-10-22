@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Micron Barcode &amp; Label Generator</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/label.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header no-print">
+      <div class="brand">
+        <h1>Micron Barcode &amp; Label Generator</h1>
+        <p class="subtitle">
+          Packing slip first → auto outer/inner labels per part (BEPRO: one SAP PN per carton)
+        </p>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="btn-load-po" class="btn btn-secondary">Load PO</button>
+        <input id="file-po" type="file" accept="application/pdf,.pdf" class="file-input" tabindex="-1" />
+        <button type="button" id="btn-sample" class="btn btn-secondary">Load sample</button>
+        <button type="button" id="btn-clear" class="btn btn-secondary">Clear</button>
+        <button type="button" id="btn-save" class="btn btn-secondary">Save data</button>
+        <button type="button" id="btn-load" class="btn btn-secondary">Load data</button>
+        <input id="file-load" type="file" accept="application/json,.json" class="file-input" tabindex="-1" />
+        <button type="button" id="btn-print" class="btn btn-secondary">Print current</button>
+        <button type="button" id="btn-print-all" class="btn btn-primary">Print all</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="panel form-panel no-print">
+        <section class="card card-options">
+          <h2>1 · Shipment options</h2>
+          <div class="options-grid">
+            <label class="field field-compact">
+              <span>Material</span>
+              <select id="material">
+                <option value="hardware">Hardware</option>
+                <option value="component">Component reels</option>
+              </select>
+            </label>
+            <label class="field field-compact">
+              <span>Date mode (labels)</span>
+              <select id="date-mode">
+                <option value="9D">Date code (9D)</option>
+                <option value="2D">Expiry (2D)</option>
+              </select>
+            </label>
+          </div>
+          <p class="hint">
+            Use <strong>Load PO</strong> for a Micron Ariba PDF (EN/KO): Customer Part # → (P), Part # → (1P),
+            quantities. Then enter packing slip, invoice, lot, serial, and dates.
+            One outer + one inner label is created per part (BEPRO: one Micron SAP PN per outer carton).
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>2 · Packing slip</h2>
+          <label class="field">
+            <span><span class="di">(K)</span> PO Number</span>
+            <div class="field-with-action">
+              <input id="po" type="text" autocomplete="off" placeholder="4512345678" />
+              <button type="button" id="btn-load-po-inline" class="btn btn-secondary btn-small">Load PO PDF</button>
+            </div>
+            <span class="error" data-error-for="po"></span>
+          </label>
+          <label class="field">
+            <span><span class="di">(11K)</span> Packing Slip Number</span>
+            <input id="packingSlip" type="text" autocomplete="off" placeholder="200123-01XYZ" />
+            <span class="error" data-error-for="packingSlip"></span>
+          </label>
+          <label class="field">
+            <span>Invoice Number</span>
+            <input id="invoice" type="text" autocomplete="off" placeholder="INV-100234" />
+            <span class="error" data-error-for="invoice"></span>
+          </label>
+          <label class="field">
+            <span><span class="di">(1P)</span> Default Manufacturer Part Number</span>
+            <input id="mpnDefault" type="text" autocomplete="off" placeholder="ABC1234" />
+            <span class="error" data-error-for="mpnDefault"></span>
+          </label>
+          <label class="field">
+            <span><span class="di">(21P)</span> Manufacturer</span>
+            <input id="manufacturer" type="text" autocomplete="off" placeholder="MICRON" />
+            <span class="error" data-error-for="manufacturer"></span>
+          </label>
+          <label class="field">
+            <span><span class="di">(4L)</span> Origin</span>
+            <input id="origin" type="text" autocomplete="off" placeholder="JP" maxlength="3" />
+            <span class="error" data-error-for="origin"></span>
+          </label>
+          <label class="field">
+            <span><span class="di">(7Q)</span> Total Quantity <em class="limit">optional; blank = sum of part list</em></span>
+            <input id="totalQuantity" type="text" inputmode="numeric" autocomplete="off" placeholder="3000" />
+            <span class="error" data-error-for="totalQuantity"></span>
+          </label>
+          <label class="field checkbox-field">
+            <input id="includeExpiryOnSlip" type="checkbox" />
+            <span>Include expiry on packing slip (MM/DD/YYYY)</span>
+          </label>
+          <label class="field hidden" id="field-slip-expiry">
+            <span>Expiry Date <em class="limit">MM/DD/YYYY</em></span>
+            <input id="slipExpiry" type="text" autocomplete="off" placeholder="01/23/2021" maxlength="10" />
+            <span class="error" data-error-for="slipExpiry"></span>
+          </label>
+
+          <div class="part-lines-header">
+            <h3>Part list <em class="limit">drives outer/inner label count</em></h3>
+            <button type="button" id="btn-add-part" class="btn btn-secondary btn-small">Add part</button>
+          </div>
+          <p class="error" data-error-for="partLines"></p>
+          <div id="part-lines" class="part-lines"></div>
+          <p class="hint" id="package-count-hint">Add parts to generate labels.</p>
+        </section>
+
+        <section class="card" id="section-packages">
+          <h2>3 · Outer &amp; inner labels</h2>
+          <p class="hint">
+            Lot, serial, and date are optional (date code must be YYYYMMDD if entered). Check
+            <em>Individually packaged</em> when each unit needs its own inner label (outer qty N → N inners at qty 1).
+          </p>
+          <div id="packages-editor" class="packages-editor"></div>
+        </section>
+
+        <section class="card status-card">
+          <h2>Status</h2>
+          <p id="status-message" class="status ok">Start with the packing slip part list.</p>
+          <p id="save-status" class="save-status">No saved session yet.</p>
+          <details class="payload-details" id="dm-details">
+            <summary>2D Data Matrix payload (current label)</summary>
+            <code id="dm-payload" class="payload"></code>
+          </details>
+        </section>
+      </aside>
+
+      <main class="panel preview-panel">
+        <div class="preview-toolbar no-print">
+          <h2>Live preview</h2>
+          <label class="preview-select-wrap">
+            <span class="sr-only">Preview document</span>
+            <select id="preview-target"></select>
+          </label>
+          <span id="preview-badge" class="badge">Packing Slip</span>
+        </div>
+        <div class="preview-stage">
+          <div id="label-root" class="label label-outer hidden" aria-label="Shipping label preview">
+            <div class="label-box label-box-top" data-outer-only>
+              <div class="label-row" data-field="po">
+                <div class="row-title">(K) PO Number</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="label-row" data-field="packingSlip">
+                <div class="row-title">(11K) Packing Slip</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="label-row" data-field="manufacturer">
+                <div class="row-title">(21P) Manufacturer</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="label-row" data-field="origin">
+                <div class="row-title">(4L) Origin</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+            </div>
+            <div class="label-box label-box-bottom">
+              <div class="bottom-grid">
+                <div class="bottom-rows">
+                  <div class="label-row" data-field="partNumber">
+                    <div class="row-title">(P) Part Number</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row" data-field="mpn">
+                    <div class="row-title">(1P) Manufacturer Part Number</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row inner-mfr-origin" data-field="manufacturer">
+                    <div class="row-title">(21P) Manufacturer</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row" data-field="lot">
+                    <div class="row-title">(1T) Lot Number</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row" data-field="date" id="row-date">
+                    <div class="row-title" id="date-row-title">(9D) Date Code</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row" data-field="quantity">
+                    <div class="row-title">(7Q) Quantity</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row" data-field="serial">
+                    <div class="row-title">(S) Serial Number</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row inner-mfr-origin" data-field="origin">
+                    <div class="row-title">(4L) Origin</div>
+                    <div class="row-barcode">
+                      <canvas class="bc-1d" width="1" height="1"></canvas>
+                      <div class="hr-value"></div>
+                    </div>
+                  </div>
+                  <div class="label-row msl-row" data-field="msl">
+                    <div class="row-title">(7E) MSL</div>
+                    <div class="row-barcode">
+                      <div class="hr-value msl-text"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dm-wrap" title="2D Data Matrix">
+                  <canvas id="bc-dm" class="bc-dm" width="1" height="1"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="packing-slip-root" class="packing-slip" aria-label="Packing slip preview">
+            <header class="slip-header">
+              <div>
+                <div class="slip-doc-title">PACKING SLIP</div>
+              </div>
+              <div class="slip-number-block">
+                <div class="slip-number-label">(11K) Packing Slip No.</div>
+                <div id="slip-title-number" class="slip-number-value">—</div>
+              </div>
+            </header>
+            <div class="slip-grid">
+              <div class="slip-row" data-slip="packingSlip">
+                <div class="row-title">(11K) Packing Slip</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="slip-row" data-slip="invoice">
+                <div class="row-title">Invoice Number</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="slip-row" data-slip="po">
+                <div class="row-title">(K) PO Number</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="slip-row" data-slip="quantity">
+                <div class="row-title">(7Q) Total Quantity</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+              <div class="slip-row hidden" data-slip="slipExpiry" data-slip-expiry-block>
+                <div class="row-title">Expiry Date (MM/DD/YYYY)</div>
+                <div class="row-barcode">
+                  <canvas class="bc-1d" width="1" height="1"></canvas>
+                  <div class="hr-value"></div>
+                </div>
+              </div>
+            </div>
+            <section class="part-list-section">
+              <h3>Part list</h3>
+              <p class="part-list-note">Parts in this shipment with quantities (text + barcode).</p>
+              <table class="part-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>(P) Part Number</th>
+                    <th>(7Q) Quantity</th>
+                  </tr>
+                </thead>
+                <tbody id="part-list-body"></tbody>
+              </table>
+            </section>
+          </div>
+        </div>
+
+        <!-- Used only for Print all -->
+        <div id="print-all-root" class="print-all-root" aria-hidden="true"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bwip-js@4.5.1/dist/bwip-js-min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+_po_extract/
+tests/fixtures/po/pdfjs_*.txt

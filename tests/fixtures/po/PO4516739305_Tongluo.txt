@@ -1,0 +1,162 @@
+--- PAGE 1 ---
+구매 오더
+( 변경됨)
+4516739305
+금액: $2,070,000.00 USD
+버전: 2
+구매 오더: 4516739305
+SAP Business Network에서 이 구매 오더를 전달했습니다.   Ariba 및 SAP Business Network에 대한 자세한 내용을 보려면 https://www.ariba.com을(를) 방문하십시오.
+보낸 사람:
+Micron Memory Taiwan Co.,Ltd.
+421
+대만
+TWN , Taichung City
+No. 369, Sec. 4, Sanfong Rd., Houli Dist
+  전화: 
+  팩스: 
+받는 사람: 
+Advanced Technology Inc(ATI)
+대한민국
+21988
+Incheon 인천광역시 송도미래로 
+41(송도동, 에이티아이(Ati)기술연
+구소) 에에티아이
+전화:
+팩스:
+전자우편: jhson@ati2000.co.kr, 
+sales@ati2000.co.kr
+ 
+의견
+General Notes:
+Quotation#QG26D0415_FR0
+ATI -- SYSTEM -- MAVI SUN2 -- RETICLE
+Tongluo demands F16N
+T&C Note: Micron's Terms and Conditions are periodically updated to reflect industry best practices. Please note the Terms and 
+Conditions associated with this purchase order.
+연락처 정보 
+ 공급자 주소
+ADVANCED TECHNOLOGY INC
+대한민국
+406-840
+ INCHEON 7 4 SONGDO DONG
+  전자우편:  edpark@ati2000.co.kr
+  전화:  328515301
+  팩스: 
+  주소 ID:  0001044465
+기타 정보 
+회사 코드: 1580
+구매 그룹: A35
+구매 조직: 1050
+요청자: 1179647
+Incoterms: FCA_Korea
+지불 조건: 90% NET IN 30 DAYS, 10% NET IN 30 DAYS-ACCEPTANCE
+Preparer: 1449034
+Terms and Conditions: https://vendorportal.micron.com/esupplier/POConditionsDownload.aspx?Company=1580&Language=EN
+SAP PO Document Type: ZCAP
+Billing Address: Capital Accounting,Micron Memory Taiwan Co. Ltd,2F., No.6, Ln. 106, Wugong 3rd Rd.,New Taipei City,TPE,248,TW
+운송 조건 정보 
+인도 조건: 운송 조건
+운송 조건: FCA  ( FCA )
+운송 위치: Korea
+
+--- PAGE 2 ---
+일정 라인
+원
+료
+개별 품목
+Micron Memory Taiwan Co., Ltd.
+366003
+대만
+Tongluo
+No. 8, Tongke 7th Rd.,
+  납품처 코드:  TW10_MC01
+ 
+Micron Memory Taiwan Co.,Ltd.
+421
+대만
+TWN , Taichung City
+No. 369, Sec. 4, Sanfong Rd., Houli Dist
+  전화: 
+  팩스: 
+ 
+라인 번호 일정 라인 번
+호
+품목 번호/설
+명
+Manufacturer 
+Part # 고객 품목 번호 유
+형
+반
+환
+수량(단
+위) 요구 납기 단가 소계
+1 1     000000060000054856      1.000
+(EA)
+2026년 9월 2
+일
+$2,070,000.00 
+USD
+$2,070,000.00 
+USD
+    SYST,ATI,SUN2-MAVI - 2543457
+ 
+ 
+상태
+1.000 미
+확인
+설명 
+CALM NO:2543457
+PARENT CALM NO:2543457
+계정 
+총계정원장 ID 0000800100
+코스트 센터 ID 0000441133
+비율 ID 100.00
+ActivityNumber ID 0020
+Network ID 000004833219
+ActivityNumber Network 000004833219
+일정 라인 번
+호 인도일 선적
+일
+수량(단
+위)
+고객이 제안한 수량(단
+위)
+고객이 제안한 납기
+일
+1 2026/9월/2 3:00 오전 
+JST
+  1.000 
+(EA)
+기타 정보 
+계정 범주: N
+요청자: 1179647
+Commercial 
+& Pricing 
+Contact:
+yclin@micron.com
+Shipping 
+Instruction:
+DELIVER
+구매 그룹: A35
+PurchaseOr
+g:
+1050
+Preparer: 1449034
+품목 납품처 대금 청구지 납품처 
+
+--- PAGE 3 ---
+ 
+소계:  $ 2,070,000.00  USD
+검사 예상 
+일 수:
+59
+분류 도메인: UNSPSC
+분류 코드: 600
+분류 도메인: UNSPSC
+분류 코드: Centrally Managed
+오더 제출 날짜: 2026년 4월 30일 목요일 오전 3:00 GMT+09:00
+SAP Business Network에서 수신한 날짜: 2026년 7월 23일 목요일 오후 1:24 
+GMT+09:00
+이 구매 오더는 Micron Technology, Inc. AN01000816716에서 발송하고 SAP 
+Business Network에서 전달한 것입니다.
+ () 2026 8 27   1:43 GMT+09:00 PDF .

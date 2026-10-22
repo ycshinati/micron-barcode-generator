@@ -1,0 +1,377 @@
+/* Label geometry — mm-based for print fidelity */
+.label {
+  --label-w: 110mm;
+  --quiet: 6mm;
+  --hr-min: 2.5mm;
+  --ink: #000;
+  --paper: #fff;
+  width: var(--label-w);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.label-box {
+  border: 1.5pt solid #000;
+  background: #fff;
+}
+
+.label-box-top {
+  margin-bottom: 2mm;
+  padding: 1.5mm 2mm 1mm;
+}
+
+.label-box-bottom {
+  --dm-size: 20mm;
+  --dm-inset: 5mm;
+  --dm-1d-gap: 12mm;
+  /* Reserved strip: inset + DM + gap between 1D and 2D */
+  --dm-reserve: calc(var(--dm-inset) + var(--dm-size) + var(--dm-1d-gap));
+  position: relative;
+  padding: 1.5mm 2mm 1.5mm;
+  min-height: calc(var(--dm-inset) + var(--dm-size) + 1.5mm);
+}
+
+.label.label-inner .label-box-top {
+  display: none;
+}
+
+.label.label-inner .label-box-bottom {
+  margin: 0;
+}
+
+.label.label-outer .inner-mfr-origin {
+  display: none;
+}
+
+.label .msl-row {
+  display: none;
+}
+
+.label.show-msl .msl-row {
+  display: grid;
+}
+
+.msl-text {
+  font-size: 4mm;
+  font-weight: 700;
+  padding-top: 1mm;
+}
+
+/* Packing slip document */
+.packing-slip {
+  width: 180mm;
+  min-height: 220mm;
+  background: #fff;
+  color: #000;
+  border: 1.5pt solid #000;
+  padding: 6mm 7mm 8mm;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.slip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8mm;
+  border-bottom: 1.5pt solid #000;
+  padding-bottom: 3mm;
+  margin-bottom: 4mm;
+}
+
+.slip-doc-title {
+  font-size: 6mm;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.slip-number-label {
+  font-size: 2.4mm;
+  font-weight: 700;
+}
+
+.slip-number-value {
+  font-size: 4mm;
+  font-weight: 700;
+  margin-top: 0.5mm;
+}
+
+.slip-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+
+.slip-row {
+  display: grid;
+  grid-template-columns: 48mm 1fr;
+  gap: 2mm;
+  align-items: start;
+  min-height: 12mm;
+  padding: 1mm 0;
+  border-bottom: 0.3pt solid #ccc;
+}
+
+.slip-row .row-title {
+  font-size: 2.6mm;
+  font-weight: 700;
+  padding-top: 0.5mm;
+}
+
+.slip-row .row-barcode {
+  padding-left: 6mm;
+  padding-right: 6mm;
+}
+
+.slip-row .bc-1d {
+  max-width: 55mm;
+}
+
+.part-list-section {
+  margin-top: 5mm;
+}
+
+.part-list-section h3 {
+  margin: 0 0 1mm;
+  font-size: 3.2mm;
+}
+
+.part-list-note {
+  margin: 0 0 2mm;
+  font-size: 2.4mm;
+}
+
+.part-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 2.5mm;
+}
+
+.part-table th,
+.part-table td {
+  border: 0.6pt solid #000;
+  padding: 1.5mm;
+  vertical-align: top;
+  text-align: left;
+}
+
+.part-table th {
+  background: #f0f0f0;
+  font-weight: 700;
+}
+
+.part-idx {
+  width: 8mm;
+  text-align: center;
+  font-weight: 700;
+}
+
+.part-cell .hr-value {
+  font-size: 2.5mm;
+  font-weight: 700;
+  margin-top: 0.4mm;
+}
+
+.part-cell .bc-1d {
+  max-width: 36mm;
+  height: auto;
+}
+
+.bottom-grid {
+  display: block;
+  /* Keep 1D clear of the 2D zone (12mm gap + DM + 5mm inset) */
+  padding-right: var(--dm-reserve);
+  min-width: 0;
+}
+
+.bottom-rows {
+  min-width: 0;
+}
+
+.label-row {
+  display: grid;
+  grid-template-columns: 38mm 1fr;
+  gap: 1mm;
+  align-items: start;
+  min-height: 11mm;
+  padding: 0.6mm 0;
+}
+
+.label-box-bottom .label-row {
+  grid-template-columns: 30mm 1fr;
+}
+
+.row-title {
+  font-size: 2.6mm;
+  font-weight: 700;
+  line-height: 1.2;
+  padding-top: 0.5mm;
+  min-height: var(--hr-min);
+}
+
+.row-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  /* Quiet zones: ≥6 mm each end of barcode */
+  padding-left: var(--quiet);
+  padding-right: var(--quiet);
+}
+
+.bc-1d {
+  display: block;
+  /* Cap physical length so long DI payloads stay scannable in one FOV */
+  max-width: 42mm;
+  width: auto;
+  height: auto;
+  image-rendering: pixelated;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* Bottom box: shorten 1D so ≥12mm remains before the 2D */
+.label-box-bottom .bc-1d,
+.label-box-bottom img.bc-1d {
+  max-width: 30mm;
+}
+
+.label-box-bottom .row-barcode {
+  /* Right quiet zone replaced by the dedicated 12mm 1D–2D gap */
+  padding-right: 0;
+}
+
+img.bc-1d,
+img.bc-dm {
+  display: block;
+  width: auto;
+  height: auto;
+  image-rendering: pixelated;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+img.bc-1d {
+  max-width: 42mm;
+}
+
+img.bc-dm {
+  max-width: 100%;
+}
+
+.hr-value {
+  font-size: 2.6mm;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-top: 0.4mm;
+  min-height: var(--hr-min);
+  letter-spacing: 0.02em;
+}
+
+.dm-wrap {
+  position: absolute;
+  top: var(--dm-inset);
+  right: var(--dm-inset);
+  width: var(--dm-size);
+  height: var(--dm-size);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+.bc-dm {
+  display: block;
+  width: var(--dm-size);
+  height: var(--dm-size);
+  image-rendering: pixelated;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.label-row[data-empty="true"] .bc-1d,
+.label-row[data-empty="true"] .hr-value {
+  opacity: 0.25;
+}
+
+/* Print / Save as PDF */
+@page {
+  size: auto;
+  margin: 8mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .app {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .preview-panel {
+    margin: 0;
+  }
+
+  .preview-stage {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    overflow: visible;
+    display: block;
+  }
+
+  .label,
+  .packing-slip {
+    box-shadow: none;
+    margin: 0 auto;
+  }
+
+  .packing-slip.hidden,
+  .label.hidden {
+    display: none !important;
+  }
+
+  body.print-all-mode .preview-stage > .label,
+  body.print-all-mode .preview-stage > .packing-slip {
+    display: none !important;
+  }
+
+  body.print-all-mode .print-all-root {
+    display: block !important;
+  }
+
+  .print-page {
+    break-after: page;
+    page-break-after: always;
+    margin: 0 auto 8mm;
+  }
+
+  .print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .print-page-title {
+    display: none;
+  }
+}

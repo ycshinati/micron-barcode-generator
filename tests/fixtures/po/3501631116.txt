@@ -1,0 +1,154 @@
+--- PAGE 1 ---
+Purchase Order
+(New)
+3501631116
+Amount: $ 1,800.00  USD
+Version: 1
+Purchase Order: 3501631116
+This purchase order was delivered by SAP Business Network.   For more information about Ariba and SAP Business Network, visit https://www.ariba.com.
+From:
+Micron Memory Taiwan Co
+421
+Taiwan
+TWN , Taichung City
+No. 369, Sec. 4, Sanfong Rd.,
+To: 
+Advanced Technology Inc(ATI)
+Republic of Korea
+21988
+Incheon 인천광역시 송도미래로 
+41(송도동, 에이티아이(Ati)기술연
+구소) 에에티아이
+Phone:
+Fax:
+Email: jhson@ati2000.co.kr, 
+sales@ati2000.co.kr
+ 
+Comments 
+Comment Type:
+General
+Comment Body:
+Due to company processes and to avoid any possible payment issues in the future, please kindly only send goods to the warehouse/receiving team, not the user.    
+故公司流程以及后續付款上能更加快捷，請只把貨物交给庫房人員而不是直接给用戶。 
+Comment By:
+Elaine Tseng 曾 玉蓮
+Comment Date:
+2026-08-17T06:54:37-07:00
+Comment Type: Terms and Conditions
+Body:All purchases made by Micron are subject to Micron's Terms and Conditions of Purchase in effect at the date this purchase order ("Order") is issued to you, which can 
+be found at the following uniform resource locator: https://vendorportal.micron.com/esupplier/POConditionsDownload.aspx?Company=1580&Language=ZF. To request a 
+hard copy of these Terms and Conditions of Purchase, please contact Micron Purchasing Department. Micron explicitly disclaims and rejects any addition or change to or 
+deletion of these Terms and Conditions of Purchase.
+All purchases made by Micron are subject to Micron's Terms and Conditions of Purchase in effect at the date this purchase order ("Order") is issued to you, which can be 
+found at the following uniform resource locator: https://vendorportal.micron.com/esupplier/POConditionsDownload.aspx?Company=1580&Language=EN. To request a hard 
+copy of these Terms and Conditions of Purchase, please contact Micron Purchasing Department. Micron explicitly disclaims and rejects any addition or
+Other Information 
+Request Type: Standard
+SAP Document Type: YSTD
+Payment Terms: Current Month end + 2 Calendar Months
+Billing Address: Micron Memory Taiwan Co., Ltd.
+New Taipei City Taipei, 248
+Taiwan
+Special Handling Instructions: If shipment is over 150 lbs, please access the following URL for appropriate email 
+to get details on Shipping Instructions: https://www.micron.com/special-handling-
+instructions
+Contact Email: MMT_BET@micron.com
+Note: Micron’s Terms and Conditions are periodically updated to reflect industry best 
+practices. Please note the Terms and Conditions associated with this purchase 
+order.
+Company Code: 1580
+Purchasing Unit Name: 1580-Micron Memory Taiwan Co
+台灣美光記憶體股份有限公司 零配件倉 Micron Memory Taiwan Co LIUPEIHSUAN
+台灣美光記憶體股份有限公司 零配件倉
+SHIP ALL ITEMS TO BILL TO DELIVER TO 
+
+--- PAGE 2 ---
+Material
+Material
+Line Items
+42152
+Taiwan
+TW , 台中市
+后里區
+后科南路88號
+  Ship To Code:  TW07_MC01
+  Phone:  +886 (4) 25218000
+ 
+421
+Taiwan
+TWN , Taichung City
+No. 369, Sec. 4, Sanfong Rd.,
+ 
+Line # No. Schedule Lines Part # / Description Manufacturer Part # Type Return Qty (Unit) Need By Unit Price Subtotal
+1 P0000460        1 (EA) 29 Oct 2026 $300.00 USD $300.00 USD
+    LMS-5000W PARTS
+ 
+STATUS
+1 
+Unconfirmed
+Other Information 
+Req. Line No.: 1
+Line Item Text: WTR Vacuum Pad (IU10-ATI-LDW-CS-X) (1 QTY = 20 EA)
+Requester: Betty Liu 劉 佩瑄
+PR No.: PR2280295
+Inco Terms: FOB_FREE ON BOARD
+Shipping Instructions: DELIVER
+Delivery Location.ID: TW00000008
+Delivery Location.Name: MTB-Customer Pick up
+Catalog Supplier: N
+Final Invoice: No
+Delivery Complete: No
+Classification Domain: unspsc
+Classification Code: 691034
+Line #  No. Schedule Lines  Part # / Description  Manufacturer Part #    Type  Return  Qty (Unit)  Need By  Unit Price  Subtotal 
+2 P0011371        1 (EA) 29 Oct 2026 $900.00 USD $900.00 USD
+    LMS-5000W PARTS
+ 
+STATUS
+1 
+Unconfirmed
+Other Information 
+Req. Line No.: 2
+Line Item Text: Vision Axis X driver
+Requester: Betty Liu 劉 佩瑄
+PR No.: PR2280295
+Inco Terms: FOB_FREE ON BOARD
+
+--- PAGE 3 ---
+ 
+Sub-total:  $ 1,800.00  USD
+Material
+Shipping Instructions: DELIVER
+Delivery Location.ID: TW00000008
+Delivery Location.Name: MTB-Customer Pick up
+Catalog Supplier: N
+Final Invoice: No
+Delivery Complete: No
+Classification Domain: unspsc
+Classification Code: 691034
+Line #  No. Schedule Lines  Part # / Description  Manufacturer Part #    Type  Return  Qty (Unit)  Need By  Unit Price  Subtotal 
+3 P0023267        1 (EA) 29 Oct 2026 $600.00 USD $600.00 USD
+    LMS-5000W PARTS
+ 
+STATUS
+1 
+Unconfirmed
+Other Information 
+Req. Line No.: 3
+Line Item Text: Trigger Board ATI-Trigger_Board(PC Install Ver)
+Requester: Betty Liu 劉 佩瑄
+PR No.: PR2280295
+Inco Terms: FOB_FREE ON BOARD
+Shipping Instructions: DELIVER
+Delivery Location.ID: TW00000008
+Delivery Location.Name: MTB-Customer Pick up
+Catalog Supplier: N
+Final Invoice: No
+Delivery Complete: No
+Classification Domain: unspsc
+Classification Code: 691034
+Order submitted on: Tuesday 18 Aug 2026 4:08 PM GMT+09:00
+Received by SAP Business Network on: Tuesday 18 Aug 2026 4:08 PM GMT+09:00
+This Purchase Order was sent by Micron Technology, Inc. AN01000816716 and 
+delivered by SAP Business Network.
+PDF generated by AJ Shin on Friday 21 Aug 2026 11:12 AM GMT+09:00

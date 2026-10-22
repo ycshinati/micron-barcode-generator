@@ -1,0 +1,11 @@
+{
+  "name": "micron-barcode-generator",
+  "version": "1.6.2",
+  "private": true,
+  "description": "Micron packing-slip-first shipment labels (BEPRO)",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/encode.test.js && node tests/storage.test.js && node tests/shipment.test.js && node tests/barcodes.test.js && node tests/parse-po.test.js",
+    "start": "npx --yes serve -l 5173 ."
+  }
+}
