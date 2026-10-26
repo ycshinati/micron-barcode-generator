@@ -12,14 +12,27 @@ Local web app for Micron Global ATPRO / BEPRO *Barcode & Shipping Label Requirem
 | Preview | Packing slip or any generated label |
 | Print | **Print current** or **Print all** (slip + every outer/inner) |
 
-## Run
+## Run (local)
 
 ```bash
 cd "D:\Development\MICRON BARCODE GENERATOR"
 npm start
 ```
 
-Open http://localhost:5173 (requires network for `bwip-js` CDN).
+Open http://localhost:5173 (requires network for `bwip-js` / `pdf.js` CDNs).
+
+## Team hosting (Azure Static Web Apps)
+
+The app deploys from GitHub Actions on every push to `main`.
+
+1. Create an Azure Static Web App (Free) linked to this repo, **or** create the app and set the deployment token as the GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
+2. After the workflow succeeds, share the Azure URL (e.g. `https://….azurestaticapps.net`) in Teams.
+
+Notes for the team:
+
+- No install — open the URL in Edge/Chrome.
+- Each user’s form data stays in their own browser (`localStorage`), not a shared database.
+- **Load PO** needs outbound internet (pdf.js CDN).
 
 ## Use
 
