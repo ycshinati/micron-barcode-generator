@@ -1,6 +1,6 @@
 {
   "name": "micron-barcode-generator",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "private": true,
   "description": "Micron packing-slip-first shipment labels (BEPRO)",
   "type": "module",

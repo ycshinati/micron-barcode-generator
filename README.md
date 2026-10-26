@@ -21,12 +21,11 @@ npm start
 
 Open http://localhost:5173 (requires network for `bwip-js` / `pdf.js` CDNs).
 
-## Team hosting (Azure Static Web Apps)
+## Team hosting (GitHub Pages)
 
 The app deploys from GitHub Actions on every push to `main`.
 
-1. Create an Azure Static Web App (Free) linked to this repo, **or** create the app and set the deployment token as the GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
-2. After the workflow succeeds, share the Azure URL (e.g. `https://….azurestaticapps.net`) in Teams.
+**Team URL:** https://ycshinati.github.io/micron-barcode-generator/
 
 Notes for the team:
 
@@ -94,6 +93,7 @@ Targets ISO/IEC 15416 print geometry. Letter grades need a physical verifier.
 
 ## Version
 
+`1.6.3` — Host on GitHub Pages for team sharing.  
 `1.6.2` — Lot / serial / date optional; date code validated as YYYYMMDD when set.  
 `1.6.1` — Show package validation errors on the part card and in Status.  
 `1.6.0` — Individually packaged: outer qty N → N inner labels at qty 1.  
